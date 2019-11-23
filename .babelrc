@@ -1,0 +1,46 @@
+{
+    "presets": [
+        "react", 
+        ["env", { "​modules​": "​false​" }],
+        "stage-0"
+    ],
+    "plugins": [
+      ["import", { "libraryName": "antd", "libraryDirectory": "lib"}, "ant"],
+        ["import", { "libraryName": "antd-mobile", "libraryDirectory": "lib"}, "antd-mobile"],
+        ["import", {  "libraryName": "@ant-design"},"@ant-design"],
+        ["import", { "libraryName": "antd-mobile", "libraryDirectory": "lib"}, "antd-mobile"],
+        ["import", {
+          "libraryName": "lodash",
+          "libraryDirectory": "",
+          "camel2DashComponentName": false,  // default: true
+        },],
+        [
+            "babel-plugin-transform-imports",
+            {
+              "@material-ui/core": {
+                "transform": "@material-ui/core/esm/${member}",
+                "preventFullImport": false
+              },
+              "@material-ui/pickers": {
+                "transform": "@material-ui/pickers/esm/${member}",
+                "preventFullImport": false
+              },
+              "@material-ui/style": {
+                "transform": "@material-ui/style/esm/${member}",
+                "preventFullImport": false
+              },
+              "@material-ui/icons": {
+                "transform": "@material-ui/icons/esm/${member}",
+                "preventFullImport": false
+              },
+              "material-table/dist": {
+                "transform": "material-table/dist/${member}",
+                "preventFullImport": false
+              }
+            }
+          ],
+        "transform-decorators-legacy",
+        "transform-class-properties",
+        "react-hot-loader/babel"
+    ]
+}
