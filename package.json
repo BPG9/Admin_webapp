@@ -33,7 +33,7 @@
     "react-window-size": "^1.2.2",
     "redux": "^4.0.4",
     "redux-devtools": "^3.5.0",
-    "redux-thunk": "^2.3.0",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@babel/preset-stage-0": "^7.0.0",
@@ -72,7 +72,7 @@
   },
   "scripts": {
     "build": " webpack --config webpack.prod.js",
-    "start": "webpack-dev-server --open --config webpack.dev.js",
+    "start": "webpack-dev-server --open --config webpack.dev.js"
   },
   "eslintConfig": {
     "extends": "react-app"
