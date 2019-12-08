@@ -6,22 +6,28 @@ import * as serviceWorker from './serviceWorker';
 //import registerServiceWorker from './registerServiceWorker';
 
 //Redux
-import { createStore, compose, applyMiddleware } from 'redux';
+import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import reducer from './app/store/reducers/reducers';
-
+import user from './app/store/reducers/UserReducers';
+import { logger } from 'redux-logger'
 
 //CSS
 import './index.css';
 import './color.css';
-
+import '@fullcalendar/core/main.css';
+import '@fullcalendar/daygrid/main.css';
+import '@fullcalendar/timegrid/main.css';
+import '@fullcalendar/list/main.css';
 
 const composeEnhances = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-const store = createStore(reducer, composeEnhances(
-    applyMiddleware(thunk)
-));
+const store = createStore(combineReducers(
+    {
+        user
+    }), composeEnhances(
+        applyMiddleware(logger, thunk)
+    ));
 
 const app = (
     <Provider store={store}>
