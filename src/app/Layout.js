@@ -4,164 +4,93 @@ import {
   ThemeProvider,
   makeStyles
 } from "@material-ui/core/styles";
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Toolbar from "@material-ui/core/Toolbar";
-import MenuIcon from '@material-ui/icons/Menu';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import {
-  Root,
-  Header,
-  HeaderOffset,
-  Sidebar,
-  Content,
-  Footer,
-  CollapseBtn,
-  SidebarTrigger,
-  sidebarStyles,
-  headerStyles,
-} from "./components/layout/index";
-
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import Menu from './components/menu/Menu'
-import IconButton from '@material-ui/core/IconButton';
-import Button from '@material-ui/core/Button';
 import windowSize from 'react-window-size'
-import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
+import Header from './components/Layout2/Header'
+import Main from './components/Layout2/Main'
+import Footer from './components/Layout2/Footer'
+import CheckIcon from '@material-ui/icons/Check';
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import { CssBaseline } from '@material-ui/core';
+import Sidebar from './components/Layout2/Sidebar';
+import ReactResizeDetector from 'react-resize-detector';
+import Brightness4Icon from '@material-ui/icons/Brightness4';
+
+const theme =
+  createMuiTheme({
+    palette: {
+      type: 'dark',
+    },
+  }
+  );
 class App extends React.Component {
   state = {
-    opened: true,
-    collapsed: true,
-    heightOfHeader: 64
+    sideBarSize: 64,
+    sideBarOpen: window.innerWidth < 600 ? false : true,
+    sideBarinsideOpen: false,
+    type: true,
+    width: window.innerWidth,
+    height: window.innerHeight,
+  }
+  handleDrawerOpen = (a) => {
+    console.log("handleDrawerOpen", a)
+    this.setState(this.state.width < 600 ? { sideBarinsideOpen: a, sideBarOpen: a } : { sideBarinsideOpen: a })
+  }
+  sidbarChange = (a) => {
+    console.log("sidbarChange", a)
+
+    this.setState(this.state.width < 600 ? { sideBarOpen: a, sideBarinsideOpen: a } : { sideBarOpen: a })
+  }
+  onResize = (a, b) => {
+    this.setState({ width: a, height: b })
+    if (a < 600 && !this.state.sideBarinsideOpen)
+      this.setState({ sideBarinsideOpen: true })
+
   }
   render() {
-    var w = this.state.opened ? this.state.collapsed ? 64 : 256 :
-      window.innerWidth > 500 ? 0 : this.state.collapsed ? 64 : 256
+    console.log("state has been changed ", this.state)
+    const size = this.state.width < 600 ? 0 : this.state.width < 1200 ? 2 : 3
+    const typeOfDrawer = size == 0 ? "temporary" : "permanent"
     return (
-      <ThemeProvider theme={createMuiTheme()}>
-        <Root config={config}>
-          <CssBaseline />
-          <Header style={{ height: this.state.heightOfHeader }} height={this.state.heightOfHeader}>
-            <Toolbar style={{ height: this.state.heightOfHeader }} height={this.state.heightOfHeader}>
-              <IconButton
-                onClick={e => {
-                  this.setState({ opened: !this.state.opened })
-                }}
-              >
-                {this.state.opened ? <ChevronLeftIcon /> : <MenuIcon />}
-              </IconButton>
-              Header
-            </Toolbar>
-          </Header>
-          <HeaderOffset />
+      <ThemeProvider theme={
+        createMuiTheme({
+          palette: {
+            type: this.state.type ? 'light' : 'dark',
+          },
+        })
+      }>
+        <CssBaseline />
+        <ReactResizeDetector handleWidth handleHeight onResize={this.onResize} />
 
-          <Content w={w} style={{ minHeight: "calc(100vh - " + this.state.heightOfHeader + "px)", position: "relative", }} h={this.props.windowHeight}>
+        <Header sidbarChange={() => this.sidbarChange(!this.state.sideBarOpen)} onChange={() => {
+          this.setState({ type: !this.state.type });
+        }}>
+        </Header>
+        <div style={{ display: "flex" }}>
+          {this.state.sideBarOpen &&
+            <Sidebar
+              sideBarinsideOpen={(a) => this.state.sideBarinsideOpen(a)}
+              handleDrawerOpen={(a) => this.handleDrawerOpen(a)}
+              sideBarinsideOpen={this.state.sideBarinsideOpen}
+              typeOfDrawer={typeOfDrawer}
+            >
+
+
+            </Sidebar>
+          }
+          <Main sideBarinsideOpen={this.state.sideBarinsideOpen}>
+
+
             {this.props.children}
-
-          </Content>
-          <Sidebar opened={this.state.opened} collapsed={w} changed={() => this.setState({ opened: !this.state.opened })}>
-            <div style={{ position: "relative" }}>
-
-              <div /* className={sidebarStyles.container} */ style={{ height: "100%", paddingBottom: 50 }}>
-                <Menu collapsed={this.state.collapsed} changed={(a) => this.setState({ collapsed: a })} />
-              </div>
-              {this.state.opened && <Button
-                onClick={e => {
-                  this.setState({ collapsed: !this.state.collapsed })
-                }} style={{
-                  position: "fixed", bottom: 0, width: w,
-                  transition: "width 300ms ease 0s",
-                  backgroundColor: "rgb(240,240,240)"
-                }}
-              >
-
-                {this.state.collapsed ? <ArrowForwardIosIcon /> : <ArrowBackIosIcon />}
-              </Button>}
-            </div>
-          </Sidebar>
-        </Root>
+          </Main>
+        </div>
+        <Footer />
       </ThemeProvider >
     )
   }
 }
 
-
-const config = {
-  "autoCollapseDisabled": false,
-  "collapsedBreakpoint": "sm",
-  "heightAdjustmentDisabled": false,
-  "xs": {
-    "sidebar": {
-      "variant": "temporary",
-      "width": 240,
-      "collapsible": false,
-      "collapsedWidth": 64
-    },
-    "header": {
-      "position": "fixed",
-      "clipped": false,
-      "offsetHeight": 56,
-      "persistentPushed": false,
-      "persistentScreenFit": false
-    },
-    "content": {
-      "persistentPushed": false,
-      "persistentScreenFit": false
-    },
-    "footer": {
-      "persistentPushed": false,
-      "persistentScreenFit": false
-    }
-  },
-  "sm": {
-    "sidebar": {
-      "variant": "persistent",
-      "width": 256,
-      "collapsible": true,
-      "collapsedWidth": 64
-    },
-    "header": {
-      "position": "fixed",
-      "clipped": true,
-      "offsetHeight": 64,
-      "persistentPushed": false,
-      "persistentScreenFit": false
-    },
-    "content": {
-      "persistentPushed": false,
-      "persistentScreenFit": false
-    },
-    "footer": {
-      "persistentPushed": true,
-      "persistentScreenFit": true
-    }
-  },
-  "md": {
-    "sidebar": {
-      "variant": "persistent",
-      "width": 256,
-      "collapsible": true,
-      "collapsedWidth": 64
-    },
-    "header": {
-      "position": "fixed",
-      "clipped": true,
-      "offsetHeight": 64,
-      "persistentPushed": true,
-      "persistentScreenFit": true
-    },
-    "content": {
-      "persistentPushed": true,
-      "persistentScreenFit": true
-    },
-    "footer": {
-      "persistentPushed": true,
-      "persistentScreenFit": true
-    }
-  }
-};
 export default windowSize(App)

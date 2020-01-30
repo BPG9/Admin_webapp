@@ -1,40 +1,10 @@
 import axios from 'axios';
 import * as actionTypes from '../actionTypes';
 import * as config from '../../../config'
-export const AUTH_START = "AUTH_START"
-export const AUTH_SUCC = "AUTH_SUCC"
-export const AUTH_ERR = "AUTH_ERR"
-export const AUTH_LOGOUT = "AUTH_LOGOUT"
+import * as request from '../../../Requests'
 
 
-export const sollChange = (a) => {
-    return (dispatch) => {
-        let data = {
-            soll_wt: a
-        };
-        axios.post(config.BACKEND + "/ntt/user/add/sollwt", JSON.stringify(data), {
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json',
-                "authtoken": localStorage.getItem("authtoken")
-            }
-        })
-            .then(res => {
-                // localStorage.setItem('authToken', authToken);
-                dispatch(sollChanged(a));
-                // dispatch(AuthSuccess(authToken));
-            })
-            .catch(err => {
-                dispatch(AuthError(err))
-            })
-    }
-}
-export const sollChanged = (a) => {
-    return {
-        type: actionTypes.SOLL_CHANGE,
-        s: a
-    }
-}
+
 export const AuthStart = () => {
     return {
         type: actionTypes.AUTH_START
@@ -57,53 +27,52 @@ export const AuthError = (e) => {
         error: e
     }
 }
-export const AuthSuccess = (e, a, name, v, s) => {
+export const AuthSuccess = (e, a) => {
     return {
         type: actionTypes.AUTH_SUCC,
         token: e,
         id: a,
-        name: name,
-        vorname: v,
-        s: s
+
 
     }
 }
 
 export const AuthCheck = () => {
     return (dispatch) => {
-        dispatch(AuthLogin("s@s.s", "s"));
+        dispatch(AuthStart());
+        request.axiosGraphQL.post('', { query: request.refresh(localStorage.getItem("token")) })
+            .then(res => {
+                //TODO
+                localStorage.setItem('token', res.headers.token);
+                dispatch(AuthSuccess(res.headers.token));
+            })
+            .catch(err => {
+                //TODO
+                dispatch(AuthError(err))
+            })
     }
 }
 export const AuthLogin = (id, pass) => {
     return dispatch => {
         dispatch(AuthStart());
-        let data = {
-            email: id,
-            password: pass,
-        };
-        axios.post(config.BACKEND + "/ntt/user/login", JSON.stringify(data), {
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json'
-            }
-        })
+        request.axiosGraphQL.post('', { query: request.login(id, pass) })
             .then(res => {
-                // localStorage.setItem('authToken', authToken);
-                localStorage.setItem('authtoken', res.headers.authtoken);
+                //TODO
+                localStorage.setItem('token', res.headers.token);
                 localStorage.setItem('Email', id);
                 console.log("login shod")
-                dispatch(AuthSuccess(res.headers.authtoken, id, res.data.nachname, res.data.vorname, res.data.soll_wt));
-                // dispatch(AuthSuccess(authToken));
+                dispatch(AuthSuccess(res.headers.token, id));
             })
             .catch(err => {
+                //TODO
                 dispatch(AuthError(err))
             })
     }
-    //TODO AGE TOKEN BEYNE 30-60 min bud darkhaste dobare bede vase TOKEN JADID
-    //AGAR TOKEN GÜLTIG NABUD LOGOUT KONE
 }
+
 export const AuthLogout = (id, pass) => {
     return dispatch => {
+        localStorage.removeItem("token")
     }
 }
 

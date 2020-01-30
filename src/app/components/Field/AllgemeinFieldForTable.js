@@ -19,12 +19,11 @@ export default function PaperSheet(props) {
     const classes = useStyles();
 
     return (
-        <Paper
-            style={props.nopadding ? { padding: 0 } : props.title && props.title != "" ? { padding: "10px 32px 32px", margin: "20px 32px" } : { padding: 32 }}
+        <div
+            style={{ padding: 32 }}
         >
-            {props.title && props.title != "" && <h2>{props.title}</h2>}
             {props.children}
-        </Paper>
+        </div>
     );
 }
 

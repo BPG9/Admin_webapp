@@ -1,17 +1,27 @@
 import React, { Component } from 'react';
+import UserAdding from '../components/Admin/UserAdding'
+import CreateAdmin from '../components/Admin/CreateAdmin'
+import ChangePassword from '../components/Admin/ChangePassword'
+import CreateCode from '../components/Admin/CreateCode'
+import DeleteUser from '../components/Admin/DeleteUser'
+import DemoteUser from '../components/Admin/DemoteUser'
 
 
-
-class Homepage extends Component {
+class Admin extends Component {
 
   render() {
     return (
       <div>
-        Setting
+        {/* <UserAdding /> */}
+        <CreateAdmin />
+        <ChangePassword />
+        <CreateCode />
+        <DeleteUser />
+        <DemoteUser />
       </div>
     );
   }
 }
 
 
-export default Homepage;
+export default Admin;

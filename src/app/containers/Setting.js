@@ -6,6 +6,7 @@ class Setting extends Component {
   render() {
     return (
       <div>
+        s
       </div>
     );
   }
@@ -21,6 +22,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
   }
+
 };
 
 export default (
