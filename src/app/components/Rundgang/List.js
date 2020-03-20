@@ -17,6 +17,7 @@ export default class AwesomeComponent extends React.Component {
                 <MaterialTable
                     title="Liste von Rundgängen"
                     columns={[
+                        { title: 'ID', field: 'Id' },
                         { title: 'Ersteller', field: 'Ersteller' },
                         { title: 'Title', field: 'Title' },
                         { title: 'Datum', field: 'Datum', type: 'date' },
@@ -73,7 +74,7 @@ export default class AwesomeComponent extends React.Component {
                         {
                             icon: 'cloud_download',
                             tooltip: 'Download',
-                            onClick: (event, rowData) => alert("You saved " + rowData.Id)
+                            onClick: (event, rowData) => this.props.handelSelect(rowData.Id)
                         },
                     ]}
                     options={{

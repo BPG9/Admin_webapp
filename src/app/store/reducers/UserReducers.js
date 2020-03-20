@@ -44,8 +44,6 @@ const reducer = (state = initialState, action) => {
       return authLogout(state, action);
     case actionTypes.AUTH_RENEW:
       return authRenew(state, action);
-    case actionTypes.SOLL_CHANGE:
-      return SOLL_CHANGE(state, action);
     default:
       return state;
   }

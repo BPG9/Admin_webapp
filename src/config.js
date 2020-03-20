@@ -1,5 +1,5 @@
 export const GOOGLEAPI = ""
-export const BACKEND = ""
+export const BACKEND = "http://130.83.247.244:8080"
 
 
 export const SIZE = {

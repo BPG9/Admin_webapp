@@ -29,9 +29,10 @@ class App extends Component {
             <Router >
                 <BaseLayout userLogin={this.props.login}>
                     {
+
                         this.state.loading ?
                             <AwesomeComponent h="calc(100vh - 64px)" /> :
-                            !this.props.login && localStorage.getItem('authtoken') === this.props.token ?
+                            this.props.login && localStorage.getItem('authtoken') === this.props.token ?
                                 <BaseRouter /> :
                                 <Login />
                     }

@@ -1,15 +1,22 @@
 import axios from 'axios';
+import * as conf from './config'
 
-
-const axiosGraphQL = axios.create({
-    baseURL: 'http://130.83.247.244:3000',
+export const axiosGraphQL = axios.create({
+    baseURL: conf.BACKEND,
+    timeout: 10000,
+    withCredentials: true,
+    transformRequest: [(data) => JSON.stringify(data.data)],
     headers: {
+        'Accept': 'application/graphql',
+        'Content-Type': 'application/graphql',
+        'Access-Control-Allow-Origin': "/",
+        "Referer": "a"
     },
 });
 
 
-const createAdmin = (name, pass) => `
-{
+export const createAdmin = (name, pass) => `
+mutation createAdmin{
     createAdmin(username:"`+ name + `", password:"` + pass + `")
     {
         user
@@ -21,44 +28,44 @@ const createAdmin = (name, pass) => `
 }
 `
 
-const login = (name, pass) => `
-{
-    auth(username:"`+ name + `", password:"` + pass + `")
+export const login = (name, pass) => `
+mutation {
+    auth(username:"admin", password:"admin")
     {
             accessToken
             refreshToken
     }
 }
 `
-const changePassword = (pass, token) => `
-{
+export const changePassword = (pass, token) => `
+refresh changePassword {
     changePassword(token:"`+ token + `", password:"` + pass + `")
 }
 `
-const refresh = (token) => `
-{
+export const refresh = (token) => `
+mutation refresh{
     refresh(refresh_token:"`+ token`")
 }
 `
-const createCode = (token) => `
-{
+export const createCode = (token) => `
+mutation createCode{
     refresh(token:"`+ token`")
     {
         code
     }
 }
 `
-const demoteUser = (user, token) => `
-{
+export const demoteUser = (user, token) => `
+mutation demoteUser{
     demoteUser(token:"`+ token + `", username:"` + user + `")
 }
 `
-const deleteUser = (user, token) => `
-{
+export const deleteUser = (user, token) => `
+mutation deleteUser{
     deleteUser(token:"`+ token + `", username:"` + user + `")
 }
 `
-const createMuseumObject = (
+export const createMuseumObject = (
     token,
     objectId,
     category,
@@ -73,7 +80,7 @@ const createMuseumObject = (
     location,
     description,
     interdisciplinaryContext) => `
-{
+mutation createMuseumObject{
     createMuseumObject( 
         objectId:"`+ objectId + `" ,
         category:"`+ category + `" ,
@@ -98,7 +105,7 @@ const createMuseumObject = (
         }
 }
 `
-const updateMuseumObject = (
+export const updateMuseumObject = (
     token,
     objectId,
     category,
@@ -114,7 +121,7 @@ const updateMuseumObject = (
     description,
     interdisciplinaryContext) =>
     `
-{
+mutation updateMuseumObject{
     updateMuseumObject( 
         objectId:"`+ objectId + `" ,
         token:"`+ token + `",` +
@@ -142,13 +149,13 @@ const updateMuseumObject = (
 
 
 
-const acceptReview = (tour, token) => `
-{
+export const acceptReview = (tour, token) => `
+mutation accept{
     acceptReview(token:"`+ token + `", tour:"` + tour + `")
 }
 `
-const denyReview = (tour, token) => `
-{
+export const denyReview = (tour, token) => `
+mutation denyReview{
     denyReview(token:"`+ token + `", tour:"` + tour + `")
 }
 `

@@ -40,7 +40,9 @@ export const AuthSuccess = (e, a) => {
 export const AuthCheck = () => {
     return (dispatch) => {
         dispatch(AuthStart());
-        request.axiosGraphQL.post('', { query: request.refresh(localStorage.getItem("token")) })
+        // axios.defaults.withCredentials = true;
+        request.axiosGraphQL.post('',
+            { query: request.refresh(localStorage.getItem("token")) })
             .then(res => {
                 //TODO
                 localStorage.setItem('token', res.headers.token);
@@ -52,21 +54,45 @@ export const AuthCheck = () => {
             })
     }
 }
+
+
 export const AuthLogin = (id, pass) => {
+    // axios.defaults.withCredentials = true;
+    // axios.defaults.crossorigin = true;
+    console.log("hier is Login,", id, pass, request.login(id, pass))
     return dispatch => {
         dispatch(AuthStart());
-        request.axiosGraphQL.post('', { query: request.login(id, pass) })
-            .then(res => {
-                //TODO
-                localStorage.setItem('token', res.headers.token);
-                localStorage.setItem('Email', id);
-                console.log("login shod")
-                dispatch(AuthSuccess(res.headers.token, id));
-            })
-            .catch(err => {
-                //TODO
-                dispatch(AuthError(err))
-            })
+        /*    request.axiosGraphQL.post('/web', request.login(id, pass), {
+               headers: {
+                   'Content-Type': 'application/graphql'
+               }
+           })
+               .then(res => {
+                   //TODO
+                   localStorage.setItem('token', res.headers.token);
+                   localStorage.setItem('Email', id);
+                   console.log("login shod")
+                   dispatch(AuthSuccess(res.headers.token, id));
+               })
+               .catch(err => {
+                   console.log("err", err)
+                   //TODO
+                   dispatch(AuthError(err))
+               })
+       } */
+
+
+        var config = {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json',
+            }
+        }
+
+        var graphql = JSON.stringify({
+            "query": `mutation {auth(username:"admin", password:"admin") {accessToken  refreshToken}}`
+        })
+        axios.post("http://130.83.247.244:8080/web", graphql, config)
     }
 }
 

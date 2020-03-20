@@ -1,22 +1,24 @@
 import React, { Component } from 'react';
 import ListOfRundgangs from '../components/Rundgang/List'
-import ExponatErstellen from '../components/Rundgang/New'
+import ListEditor from '../components/Rundgang/ListEditor'
 
 
 class Rundgang extends Component {
   state = {
     data: null,
-    txt: "A"
+    txt: "A",
+    selected: ""
   }
   render() {
+    console.log(this.state.selected)
     return (
       <div >
-        <ListOfRundgangs />
+        <ListOfRundgangs handelSelect={(x) => this.setState({ selected: x })} />
+        <ListEditor selected={this.state.selected} />
       </div >
     )
 
   }
 }
-
 
 export default Rundgang;

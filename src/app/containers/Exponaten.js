@@ -1515,6 +1515,7 @@ class Rundgang extends Component {
   render() {
     return (
       <div >
+        a
         <ExponatErstellen data={this.state.data} selected={a => this.setState({ selected: a }, console.log(a, "is selected", this.state))} />
         <EditExponaten data={this.state.selected} />
       </div >
