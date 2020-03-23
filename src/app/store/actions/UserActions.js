@@ -69,7 +69,7 @@ export const AuthLogin = (id, pass) => {
             }
         }
 
-        axios.post("http://247-244.gugw.tu-darmstadt.de/web", graphql, config).then(x => console.log("data is", x.data)).catch(x => console.log("eerror", x))
+        axios.post("http://247-244.gugw.tu-darmstadt.de/web", request.login, config).then(x => console.log("data is", x.data)).catch(x => console.log("eerror", x))
     }
 }
 
