@@ -90,9 +90,9 @@ export const AuthLogin = (id, pass) => {
         }
 
         var graphql = JSON.stringify({
-            "query": `mutation {auth(username:"admin", password:"admin") {accessToken  refreshToken}}`
+            "query": `mutation {auth(username:"` + id + `", password:"` + pass + `") {accessToken  refreshToken}}`
         })
-        axios.post("http://130.83.247.244:8080/web", graphql, config)
+        axios.post("http://247-244.gugw.tu-darmstadt.de/web", graphql, config)
     }
 }
 
@@ -101,4 +101,3 @@ export const AuthLogout = (id, pass) => {
         localStorage.removeItem("token")
     }
 }
-

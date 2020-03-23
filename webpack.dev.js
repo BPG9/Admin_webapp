@@ -15,7 +15,8 @@ module.exports = {
     contentBase: path.join(__dirname, "public"),
     hot: true,
     host: "0.0.0.0",
-    disableHostCheck: false
+    disableHostCheck: false,
+    port:8081
   },
   module: {
     rules: [
