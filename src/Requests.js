@@ -5,13 +5,10 @@ export const axiosGraphQL = axios.create({
     baseURL: conf.BACKEND,
     timeout: 10000,
     withCredentials: true,
-    transformRequest: [(data) => JSON.stringify(data.data)],
     headers: {
-        'Accept': 'application/graphql',
-        'Content-Type': 'application/graphql',
-        'Access-Control-Allow-Origin': "/",
-        "Referer": "a"
-    },
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+    }
 });
 
 
@@ -28,15 +25,9 @@ mutation createAdmin{
 }
 `
 
-export const login = (name, pass) => `
-mutation {
-    auth(username:"admin", password:"admin")
-    {
-            accessToken
-            refreshToken
-    }
-}
-`
+export const login = (name, pass) => JSON.stringify({
+    "query": `mutation {auth(username:"` + name + `", password:"` + pass + `") {accessToken  refreshToken}}`
+})
 export const changePassword = (pass, token) => `
 refresh changePassword {
     changePassword(token:"`+ token + `", password:"` + pass + `")
