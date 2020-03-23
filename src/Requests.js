@@ -25,9 +25,11 @@ mutation createAdmin{
 }
 `
 
-export const login = (name, pass) => JSON.stringify({
-    "query": `mutation {auth(username:"` + name + `", password:"` + pass + `") {accessToken  refreshToken}}`
-})
+export const login = (name, pass) => {
+    return JSON.stringify({
+        "query": `mutation {auth(username:"` + name + `", password:"` + pass + `") {accessToken  refreshToken}}`
+    })
+}
 export const changePassword = (pass, token) => `
 refresh changePassword {
     changePassword(token:"`+ token + `", password:"` + pass + `")
