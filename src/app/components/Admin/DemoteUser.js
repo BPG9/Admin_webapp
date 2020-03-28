@@ -15,12 +15,12 @@ export default class AwesomeComponent extends React.Component {
         email: "",
     }
     click = () => {
-        request.axiosGraphQL.post('', { query: request.demoteUser(localStorage.getItem("token"), this.state.email) })
+        request.axiosGraphQL.post('', { query: request.demoteUser(localStorage.getItem("atoken"), this.state.email) })
             .then(res => {
-                //TODO
+                alert('done');
             })
             .catch(err => {
-                //TODO
+                alert('err');
             })
     }
     render() {
@@ -36,7 +36,7 @@ export default class AwesomeComponent extends React.Component {
                         onChange={x => this.setState({ email: x.target.value })}
                         variant="outlined" />
 
-                    <Button style={{ margin: 5 }} variant="contained" onClick={() => this.click}>
+                    <Button style={{ margin: 5 }} variant="contained" onClick={() => this.click()}>
                         Demote
                         </Button>
                 </div>

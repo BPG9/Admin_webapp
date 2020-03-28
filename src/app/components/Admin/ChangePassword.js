@@ -15,12 +15,12 @@ export default class AwesomeComponent extends React.Component {
         code: "asd"
     }
     click = () => {
-        request.axiosGraphQL.post('', { query: request.changePassword(this.state.pass, localStorage.getItem("token")) })
+        request.axiosGraphQL.post('', { query: request.changePassword(this.state.pass, localStorage.getItem("atoken")) })
             .then(res => {
-                //TODO
+                alert('done');
             })
             .catch(err => {
-                //TODO
+                alert('err');
             })
     }
     render() {
@@ -39,7 +39,7 @@ export default class AwesomeComponent extends React.Component {
                         onChange={x => this.setState({ pass: x.target.value })}
                         variant="outlined" />
 
-                    <Button style={{ margin: 5 }} variant="contained" onClick={() => this.click}>
+                    <Button style={{ margin: 5 }} variant="contained" onClick={() => this.click()}>
                         Change
                         </Button>
 

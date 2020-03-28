@@ -1,11 +1,11 @@
 import * as actionTypes from "../actionTypes";
 
 const initialState = {
-  token: null,
+  refreshToken: null,
+  accessToken: null,
   login: false,
   loginProcess: false,
   loginError: null,
-  id: null,
   name: null,
   vorname: null,
   soll: null
@@ -15,7 +15,10 @@ const authStart = (state, action) => {
   return Object.assign({}, state, { loginProcess: true });
 };
 const authSuss = (state, action) => {
-  return Object.assign({}, state, { loginProcess: false, login: true, token: action.token, id: action.id, soll: action.s, name: action.name, vorname: action.vorname });
+  return Object.assign({}, state, { loginProcess: false, login: true, accessToken: action.accessToken, refreshToken: action.refreshToken });
+};
+const authSuss2 = (state, action) => {
+  return Object.assign({}, state, { loginProcess: false, login: true, refreshToken: action.refreshToken });
 };
 const authErr = (state, action) => {
   return Object.assign({}, state, { loginProcess: false, login: false, token: null, loginError: action.e });
@@ -38,6 +41,8 @@ const reducer = (state = initialState, action) => {
       return authStart(state, action);
     case actionTypes.AUTH_SUCC:
       return authSuss(state, action);
+    case actionTypes.AUTH_SUCC2:
+      return authSuss2(state, action);
     case actionTypes.AUTH_ERR:
       return authErr(state, action);
     case actionTypes.AUTH_LOGOUT:

@@ -14,7 +14,7 @@ class App extends Component {
         loading: true
     }
     componentWillMount() {
-        const authToken = localStorage.getItem('authtoken');
+        const authToken = localStorage.getItem('rtoken');
         authToken && authToken != "" ?
             this.props.AuthCheck() :
             this.setState({ loading: false })
@@ -32,7 +32,7 @@ class App extends Component {
 
                         this.state.loading ?
                             <AwesomeComponent h="calc(100vh - 64px)" /> :
-                            this.props.login && localStorage.getItem('authtoken') === this.props.token ?
+                            this.props.login ?
                                 <BaseRouter /> :
                                 <Login />
                     }

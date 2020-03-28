@@ -14,12 +14,15 @@ export default class AwesomeComponent extends React.Component {
         code: ""
     }
     click = () => {
-        request.axiosGraphQL.post('', { query: request.createCode(localStorage.getItem("token")) })
+        console.log("res")
+        request.axiosGraphQL.post('', { query: request.createCode(localStorage.getItem("atoken")) })
             .then(res => {
-                //TODO
+                console.log(res)
+                alert("code is :     " + res.data.data.createCode.code.string);
+                this.setState({ code: res.data.data.createCode.code.string })
             })
             .catch(err => {
-                //TODO
+                alert('err');
             })
     }
     render() {
@@ -29,7 +32,7 @@ export default class AwesomeComponent extends React.Component {
             <AllgemeinField title="Genarate Code" nopadding={false} >
                 <div ref={ref}>
 
-                    <Button style={{ margin: 5 }} variant="contained" onClick={() => this.click}>
+                    <Button style={{ margin: 5 }} variant="contained" onClick={() => this.click()}>
                         Genarate
                         </Button>
 
@@ -39,7 +42,7 @@ export default class AwesomeComponent extends React.Component {
                                 shrink: true,
                             }}
                             multiline style={{ margin: "1%", width: "78%" }}
-                            value={this.state.code} label="code" disabled
+                            value={this.state.code} label="code"
                             variant="outlined" />
                         <Pdf targetRef={ref} filename="code-example.pdf">
                             {({ toPdf }) => <Button style={{ margin: "1%", width: "18%", height: 55 }} variant="contained" color="primary"

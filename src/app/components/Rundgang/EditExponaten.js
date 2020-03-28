@@ -20,14 +20,14 @@ export default class AwesomeComponent extends React.Component {
         artType: "",
         creator: "",
         material: "",
-        size: "",
+        size_: "",
         location: "",
         description: "",
         interdisciplinaryContext: ""
     }
     componentWillReceiveProps(prevProps) {
         console.log("pro", this.props, prevProps)
-        this.props.data && this.setState({
+        !this.state.editable && this.props.data && this.setState({
             objectId: this.props.data.objectId,
             category: this.props.data.category,
             subCategory: this.props.data.subCategory,
@@ -37,7 +37,7 @@ export default class AwesomeComponent extends React.Component {
             artType: this.props.data.artType,
             creator: this.props.data.creator,
             material: this.props.data.material,
-            size: this.props.data.size,
+            size_: this.props.data.size_,
             location: this.props.data.location,
             description: this.props.data.description,
             interdisciplinaryContext: this.props.data.interdisciplinaryContext,
@@ -47,7 +47,7 @@ export default class AwesomeComponent extends React.Component {
 
     newF = () => {
         this.setState({
-            showEdit: true, editable: true,
+            showEdit: false, editable: true,
             new: true,
             objectId: "",
             category: "",
@@ -58,17 +58,19 @@ export default class AwesomeComponent extends React.Component {
             artType: "",
             creator: "",
             material: "",
-            size: "",
+            size_: "",
             location: "",
             description: "",
             interdisciplinaryContext: ""
         })
     }
     click = () => {
-        this.state.new ?
+
+        console.log("all", this.state)
+        this.state.new && !this.state.showEdit ?
             request.axiosGraphQL.post('', {
                 query: request.createMuseumObject(
-                    localStorage.getItem("token"),
+                    localStorage.getItem("atoken"),
                     this.state.objectId,
                     this.state.category,
                     this.state.subCategory,
@@ -78,43 +80,43 @@ export default class AwesomeComponent extends React.Component {
                     this.state.artType,
                     this.state.creator,
                     this.state.material,
-                    this.state.size,
+                    this.state.size_,
                     this.state.location,
                     this.state.description,
                     this.state.interdisciplinaryContext
                 )
             })
                 .then(res => {
-                    //TODO
+                    alert("DONE")
                     this.setState({ new: false, editable: false, showEdit: false })
                 })
                 .catch(err => {
-                    //TODO
+                    alert("Error" + err)
                 }) :
             request.axiosGraphQL.post('', {
                 query: request.updateMuseumObject(
-                    localStorage.getItem("token"),
+                    localStorage.getItem("atoken"),
                     this.state.objectId,
-                    this.props.data.category != this.state.category ? this.state.category : null,
-                    this.props.data.subCategory != this.state.subCategory ? this.state.subCategory : null,
-                    this.props.data.title != this.state.title ? this.state.title : null,
-                    this.props.data.year != this.state.year ? this.state.year : null,
-                    this.props.data.picture != this.state.picture ? this.state.picture : null,
-                    this.props.data.artType != this.state.artType ? this.state.artType : null,
-                    this.props.data.creator != this.state.creator ? this.state.creator : null,
-                    this.props.data.material != this.state.material ? this.state.material : null,
-                    this.props.data.size != this.state.size ? this.state.size : null,
-                    this.props.data.location != this.state.location ? this.state.location : null,
-                    this.props.data.description != this.state.description ? this.state.description : null,
-                    this.props.data.interdisciplinaryContext != this.state.interdisciplinaryContext ? this.state.interdisciplinaryContext : null
+                    this.state.category,
+                    this.state.subCategory,
+                    this.state.title,
+                    this.state.year,
+                    this.state.picture,
+                    this.state.artType,
+                    this.state.creator,
+                    this.state.material,
+                    this.state.size_,
+                    this.state.location,
+                    this.state.description,
+                    this.state.interdisciplinaryContext
                 )
             })
                 .then(res => {
-                    //TODO
+                    alert("DONE")
                     this.setState({ new: false, editable: false, showEdit: false })
                 })
                 .catch(err => {
-                    //TODO
+                    alert("Error" + err)
                 })
 
     }
@@ -204,8 +206,8 @@ export default class AwesomeComponent extends React.Component {
                                 shrink: true,
                             }}
                             style={{ margin: "1%", width: "48%" }}
-                            value={this.state.size} label="size" variant="outlined" disabled={!this.state.editable}
-                            onChange={x => this.setState({ size: x.target.value })} />
+                            value={this.state.size_} label="size_" variant="outlined" disabled={!this.state.editable}
+                            onChange={x => this.setState({ size_: x.target.value })} />
                         <TextField
                             InputLabelProps={{
                                 shrink: true,
@@ -232,8 +234,11 @@ export default class AwesomeComponent extends React.Component {
                 <div style={{ width: "100%", minWidth: 300, padding: 0 }}>
                     <Button style={{ margin: 5 }} variant="contained"
                         onClick={this.newF}>New</Button>
+                    <Button style={{ margin: 5 }} variant="contained" color="primary" onClick={() => this.new()}>
+                        {"cancel"}
+                    </Button>
                     <Button style={{ margin: 5 }} variant="contained" color="primary" onClick={() => this.setState({ editable: !this.state.editable })}>
-                        {!this.state.editable && this.state.new ? "Edit" : "cancel"}
+                        {this.state.showEdit && "Edit"}
                     </Button>
                     {this.state.editable ?
 

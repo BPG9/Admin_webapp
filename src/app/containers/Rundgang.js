@@ -9,11 +9,23 @@ class Rundgang extends Component {
     txt: "A",
     selected: ""
   }
+
+
+
+  componentWillMount() {
+    request.axiosGraphQL.post('', { query: request.pending(localStorage.getItem("atoken")) })
+      .then(res => {
+        this.setState({ data: res.data.data.allObjects })
+      })
+      .catch(err => {
+        alert("ERR" + err)
+      })
+  }
   render() {
     console.log(this.state.selected)
     return (
       <div >
-        <ListOfRundgangs handelSelect={(x) => this.setState({ selected: x })} />
+        <ListOfRundgangs handelSelect={(x) => this.setState({ selected: x })} data={this.state.data} />
         <ListEditor selected={this.state.selected} />
       </div >
     )

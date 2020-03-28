@@ -16,6 +16,11 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import * as config from '../../../config'
 import Brightness4Icon from '@material-ui/icons/Brightness4';
+import { useDispatch } from 'react-redux'
+import * as actions from "../../store/actions/UserActions";
+
+
+
 const useStyles = makeStyles(theme => ({
     grow: {
         flexGrow: 1,
@@ -33,6 +38,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function PrimarySearchAppBar(props) {
+    const dispatch = useDispatch()
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -54,6 +60,9 @@ export default function PrimarySearchAppBar(props) {
         handleMobileMenuClose();
     };
 
+    const Logout = () => {
+        dispatch(actions.Logout)
+    }
 
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
@@ -66,8 +75,7 @@ export default function PrimarySearchAppBar(props) {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+            <MenuItem onClick={Logout}>logout</MenuItem>
         </Menu>
     );
 
