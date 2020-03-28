@@ -2,7 +2,6 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 var path = require("path");
 
 module.exports = {
-  mode: "development",
   entry: {
     index: "./src/index.js"
   },
@@ -16,7 +15,7 @@ module.exports = {
     hot: true,
     host: "0.0.0.0",
     disableHostCheck: false,
-    port:8081
+    port: 8081
   },
   module: {
     rules: [
