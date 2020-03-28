@@ -1,6 +1,7 @@
 language: node_js
 node_js: stable
 before_script:
+  - npm cache clean --force
   - npm install 
 
 script:
