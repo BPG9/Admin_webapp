@@ -1,0 +1,19 @@
+language: node_js
+node_js:
+  - "stable"
+cache:
+  directories:
+    - node_modules
+before_script:
+  - npm install 
+
+script:
+  - npm test
+  - npm run build
+
+# deploy:
+#   provider: releases
+#   skip_cleanup: true
+#   api_key:
+#       secure: $GITHUB_OAUTH_TOKEN
+#   file: build/app/outputs/apk/app.apk 
