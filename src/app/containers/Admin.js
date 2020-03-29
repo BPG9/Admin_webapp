@@ -1,3 +1,10 @@
+/**
+ * @author Shayan Davarri Fard shayan.davari.fard@stud.tu-darmstadt.de
+ * 
+ * Admin Page
+ * 
+ * 
+ */
 import React, { Component } from 'react';
 import UserAdding from '../components/Admin/UserAdding'
 import CreateAdmin from '../components/Admin/CreateAdmin'

@@ -1,3 +1,10 @@
+/**
+ * @author Shayan Davarri Fard shayan.davari.fard@stud.tu-darmstadt.de
+ * 
+ * Exponatenlieste und Edieturzung und Neu Erstellung.
+ * 
+ */
+
 import React, { Component } from 'react';
 import ListOfRundgangs from '../components/Rundgang/List'
 import ExponatErstellen from '../components/Rundgang/New'

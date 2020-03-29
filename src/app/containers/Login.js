@@ -1,3 +1,11 @@
+/**
+ * @author Shayan Davarri Fard shayan.davari.fard@stud.tu-darmstadt.de
+ * 
+ * Login page
+ * 
+ */
+
+
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';

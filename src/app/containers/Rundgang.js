@@ -1,3 +1,11 @@
+/**
+ * @author Shayan Davarri Fard shayan.davari.fard@stud.tu-darmstadt.de
+ * 
+ * Rundgängeliste 
+ * 
+ */
+
+
 import React, { Component } from 'react';
 import ListOfRundgangs from '../components/Rundgang/List'
 import ListEditor from '../components/Rundgang/ListEditor'

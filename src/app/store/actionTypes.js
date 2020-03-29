@@ -1,3 +1,9 @@
+/**
+ * @author Shayan Davarri Fard shayan.davari.fard@stud.tu-darmstadt.de
+ * 
+ * 
+ * Konstaten für Redux. speziel für user
+ */
 export const AUTH_START = "AUTH_START"
 export const AUTH_SUCC = "AUTH_SUCC"
 export const AUTH_SUCC2 = "AUTH_SUCC2"

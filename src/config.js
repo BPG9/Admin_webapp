@@ -1,4 +1,10 @@
-export const GOOGLEAPI = ""
+/**
+ * @author Shayan Davarri Fard shayan.davari.fard@stud.tu-darmstadt.de
+ * 
+ * Hier ist für Konstanten Nachgedacht, Wie Backend und .....
+ * 
+ */
+
 export const BACKEND = "http://247-244.gugw.tu-darmstadt.de/web"
 
 

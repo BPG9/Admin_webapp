@@ -1,7 +1,14 @@
+/**
+ * Liste von alle API calls mit Parameter. Die Namen sind genauso wie api FUnktionen geschrieben.
+ */
+
 import axios from 'axios';
 import * as conf from './config'
 
 
+/**
+ * allgemeine Konfiguration für Call APIs
+ */
 export const axiosGraphQL = axios.create({
     baseURL: conf.BACKEND,
     timeout: 10000,

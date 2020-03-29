@@ -1,3 +1,9 @@
+/**
+ * @author Shayan Davarri Fard shayan.davari.fard@stud.tu-darmstadt.de
+ * 
+ *  Redux Änderung im Store
+ */
+
 import * as actionTypes from "../actionTypes";
 
 const initialState = {

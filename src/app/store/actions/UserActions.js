@@ -1,3 +1,9 @@
+/**
+ * @author Shayan Davarri Fard shayan.davari.fard@stud.tu-darmstadt.de
+ * 
+ * 
+ * Alle Funktiuonen die in Redux aufgerufen werden konnen.a
+ */
 import axios from 'axios';
 import * as actionTypes from '../actionTypes';
 import * as config from '../../../config'

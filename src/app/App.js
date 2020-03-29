@@ -1,3 +1,18 @@
+/**
+ * @author Shayan Davarri Fard shayan.davari.fard@stud.tu-darmstadt.de
+ * 
+ * App ist 2. Funktion/Class, die ausgeführt wird. 
+ * 
+ * Hier wird Überprüft ob User Login ist oder nicht, und wenn Token gespeichert ist,
+ *  dann versucht nochmal einzulogen. Wenn nicht, Dann zeigt Login Seite.
+ * 
+ * 
+ * 
+ * Außer Login, hat hier 2 Wichtige Funktionen /klassen aufgerufen.
+ *              --- BaseLayout: für Allgemeine Layout
+ *              --- BaseRoute:  für alle Routes und notwendige ändeung in Pages. Da diese App, Single Page ist.
+ */
+
 import React, { Component } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom'
 

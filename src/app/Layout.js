@@ -1,3 +1,15 @@
+/**
+ * @author Shayan Davarri Fard shayan.davari.fard@stud.tu-darmstadt.de
+ * 
+ *  All Layout. 
+ * NAV
+ * LEFT MENU
+ * Footer
+ * MAIN 
+ * Die Funktionen/Classen sind in ./components/Layout2 defieniert
+ */
+
+
 import React from 'react';
 import {
   createMuiTheme,
@@ -5,19 +17,13 @@ import {
   makeStyles
 } from "@material-ui/core/styles";
 import windowSize from 'react-window-size'
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 import Header from './components/Layout2/Header'
 import Main from './components/Layout2/Main'
 import Footer from './components/Layout2/Footer'
-import CheckIcon from '@material-ui/icons/Check';
-import ToggleButton from '@material-ui/lab/ToggleButton';
 import { CssBaseline } from '@material-ui/core';
 import Sidebar from './components/Layout2/Sidebar';
 import ReactResizeDetector from 'react-resize-detector';
-import Brightness4Icon from '@material-ui/icons/Brightness4';
 
 const theme =
   createMuiTheme({

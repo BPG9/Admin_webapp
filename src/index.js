@@ -1,3 +1,8 @@
+/**
+ * @author Shayan Davarri Fard shayan.davari.fard@stud.tu-darmstadt.de
+ * 
+ * Index ist Anfang des Program. Hier ist Store Hinzugefügt. Store ist für Redux.
+ */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './app/App';
@@ -33,8 +38,6 @@ const app = (
 
 ReactDOM.render(app, document.getElementById('app'));
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.register(); //maybe registerServiceWorker();
-//registerServiceWorker();
+
+// Für Offline Nutzung
+serviceWorker.register();
