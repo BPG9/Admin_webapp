@@ -9,6 +9,7 @@
 import React, { Component } from 'react';
 import ListOfRundgangs from '../components/Rundgang/List'
 import ListEditor from '../components/Rundgang/ListEditor'
+import * as request from '../../Requests'
 
 
 class Rundgang extends Component {
