@@ -23,7 +23,7 @@ export const axiosGraphQL = axios.create({
 export const createAdmin = (name, pass) => {
     return `
 mutation {
-    createUser(username:"`+ name + `", password:"` + pass + `")
+    createAdmin(username:"`+ name + `", password:"` + pass + `")
     {
         user
         {
