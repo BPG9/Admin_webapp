@@ -1,0 +1,7 @@
+{
+    "apps": [{
+        "name": "Museum APP admin Page",
+        "script": "npm",
+        "args": "start"
+    }]
+}
