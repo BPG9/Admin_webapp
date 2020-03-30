@@ -25,11 +25,11 @@ export const createAdmin = (name, pass) => {
 mutation {
     createAdmin(username:"`+ name + `", password:"` + pass + `")
     {
-        user
-        {
-            username
-            password
-        }
+ user
+ {
+   username
+   password
+ }
     }
     }
 `
@@ -48,12 +48,12 @@ export const changePassword = (pass, token) => {
     mutation {
     changePassword(token:"`+ token + `", password:"` + pass + `")
     {
-        ok{
-          ... on BooleanField
-          {
-            boolean
-          }
-        }
+ ok{
+ ... on BooleanField
+ {
+   boolean
+ }
+ }
       }
 }
 `
@@ -63,11 +63,11 @@ export const changePassword = (pass, token) => {
 export const refresh = (token) => {
     return JSON.stringify({
         "query": `
-        mutation {
-            refresh(refreshToken:"`+ token + `")
-            {newToken}
-        }
-        
+ mutation {
+   refresh(refreshToken:"`+ token + `")
+   {newToken}
+ }
+ 
 `
     })
 }
@@ -76,12 +76,12 @@ export const createCode = (token) => {
 mutation {
     createCode(token:"`+ token + `")
     {
-        code
+ code
        { 
-        ... on StringField
-        {
-          string
-        }
+ ... on StringField
+ {
+ string
+ }
        }
     }
     }
@@ -92,13 +92,13 @@ export const demoteUser = (user, token) => {
 mutation {
     demoteUser(token:"`+ token + `", username:"` + user + `")
     {
-        ok
-            {   
-            ... on BooleanField
-                {
-                    boolean
-                }
-            }
+ ok
+   {   
+   ... on BooleanField
+       {
+  boolean
+       }
+   }
     }
 }
 `
@@ -108,13 +108,13 @@ export const deleteUser = (user, token) => {
 mutation {
     deleteUser(token:"`+ token + `", username:"` + user + `")
     {
-        ok
-            {   
-            ... on BooleanField
-                {
-                    boolean
-                }
-            }
+ ok
+   {   
+   ... on BooleanField
+       {
+  boolean
+       }
+   }
     }
 }
 `
@@ -138,27 +138,27 @@ export const createMuseumObject = (
     return `
 mutation {
     createMuseumObject( 
-        objectId:"`+ objectId + `" ,
-        category:"`+ category + `" ,
-        subCategory:"`+ subCategory + `",
-        title:"`+ title + `",
-        token:"`+ token + `",
-        year:"`+ year + `",
-        artType:"`+ artType + `",
-        creator:"`+ creator + `",
-        material:"`+ material + `",
-        size:"`+ size + `",
-        location:"`+ location + `",
-        description:"`+ description + `",
-        interdisciplinaryContext:"`+ interdisciplinaryContext + `")
-        {
-            museumObject
-            {
-                objectId
-                title
-            }
-        }
-        }
+ objectId:"`+ objectId + `" ,
+ category:"`+ category + `" ,
+ subCategory:"`+ subCategory + `",
+ title:"`+ title + `",
+ token:"`+ token + `",
+ year:"`+ year + `",
+ artType:"`+ artType + `",
+ creator:"`+ creator + `",
+ material:"`+ material + `",
+ size:"`+ size + `",
+ location:"`+ location + `",
+ description:"`+ description + `",
+ interdisciplinaryContext:"`+ interdisciplinaryContext + `")
+ {
+   museumObject
+   {
+       objectId
+       title
+   }
+ }
+ }
 `
 }
 export const updateMuseumObject = (
@@ -190,30 +190,15 @@ export const updateMuseumObject = (
         location,
         description,
         interdisciplinaryContext)
-    return `
-mutation {
-    updateMuseumObject( 
-        objectId:"`+ objectId + `" ,
-        token:"`+ token + `",` +
-        `category:"` + category + `" ,` +
-        `subCategory:"` + subCategory + `" ,` +
-        `title:"` + title + `",` +
-        ` year:"` + year + `",` +
-        `artType:"` + artType + `",` +
-        `creator:"` + creator + `",` +
-        `material:"` + material + `",` +
-        `size:"` + size + `",` +
-        `location:"` + location + `",` +
-        `description:"` + description + `",` +
-        `interdisciplinaryContext:"` + interdisciplinaryContext + `")
-        {
-            museumObject
-            {
-                objectId
-                title
-            }
-        }
-        }
+    return ` mutation {    updateMuseumObject (objectId:"` + objectId + `" , token:"` + token + `",` + `category:"` + category + `" ,` + `subCategory:"` + subCategory + `" ,` + `title:"` + title + `",` + ` year:"` + year + `",` + `artType:"` + artType + `",` + `creator:"` + creator + `",` + `material:"` + material + `",` + `size:"` + size + `",` + `location:"` + location + `",` + `description:"` + description + `",` + `interdisciplinaryContext:"` + interdisciplinaryContext + `")
+ {
+   museumObject
+   {
+       objectId
+       title
+   }
+ }
+ }
 `
 }
 
@@ -245,17 +230,17 @@ export const denyReview = (tour, token) => {
 mutation {
     denyReview(token:"`+ token + `", tourId:"` + tour + `")
     {
-        ok
-        {
-        ... on BooleanField
-        {
-        boolean
-        }}
-        tour
-        {
-        id
-        status
-        }}}
+ ok
+ {
+ ... on BooleanField
+ {
+ boolean
+ }}
+ tour
+ {
+ id
+ status
+ }}}
 `
     })
 }
@@ -264,12 +249,12 @@ mutation {
 export const pending = (token) => {
     return `
     query{
-        pending(token:"`+ token + `")
+ pending(token:"`+ token + `")
        {
-           id
-           name
-           status
-           description
+  id
+  name
+  status
+  description
        }
     }
 `
@@ -279,10 +264,10 @@ export const pending = (token) => {
 export const exp = (token) => {
     return `
     query{
-        allObjects(token:"`+ token + `")
-        {
-            objectId     category     subCategory     title     year          artType     creator     material     size_     location     description     interdisciplinaryContext
-        }
+ allObjects(token:"`+ token + `")
+ {
+   objectId     category     subCategory     title     year artType     creator     material     size_     location     description     interdisciplinaryContext
+ }
     }
 `
 }
