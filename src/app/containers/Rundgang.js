@@ -13,7 +13,7 @@ import * as request from '../../Requests'
 
 class Rundgang extends Component {
   state = {
-    data: null,
+    data: [],
     txt: "A",
     selected: ""
   }
