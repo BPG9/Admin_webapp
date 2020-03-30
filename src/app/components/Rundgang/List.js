@@ -7,8 +7,6 @@ import ErrorIcon from '@material-ui/icons/Error';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import * as request from '../../../Requests'
 
-
-
 export default class AwesomeComponent extends React.Component {
     state = {
         data: this.props.data
