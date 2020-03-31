@@ -97,7 +97,7 @@ export const AuthLogin = (id, pass) => {
 
         axios.post("http://247-244.gugw.tu-darmstadt.de/web", request.login(id, pass), config)
             .then(x => {
-                if (x.data.data.auth.refreshToken != "null" || x.data.data.auth.accessToken != "null") {
+                if (x.data.data.auth.refreshToken == "null" || x.data.data.auth.accessToken == "null") {
                     alert("Error gibt es keine benutzer oder Pass ist falsch")
                 }
                 else {
