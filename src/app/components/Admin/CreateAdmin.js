@@ -26,7 +26,7 @@ export default class AwesomeComponent extends React.Component {
     }
     render() {
         return (
-            <AllgemeinField title="Add a new User" nopadding={false} >
+            <AllgemeinField title="neuer Administrator" nopadding={false} >
                 <div ref={ref}>
                     {/* 
                     <TextField

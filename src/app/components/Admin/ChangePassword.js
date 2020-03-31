@@ -27,7 +27,7 @@ export default class AwesomeComponent extends React.Component {
         console.log(this.props, "uu")
 
         return (
-            <AllgemeinField title="Change Password" nopadding={false} >
+            <AllgemeinField title="Passwot ändern" nopadding={false} >
                 <div ref={ref}>
                     <TextField
                         InputLabelProps={{

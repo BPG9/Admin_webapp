@@ -29,7 +29,7 @@ export default class AwesomeComponent extends React.Component {
         console.log(this.props, "uu")
 
         return (
-            <AllgemeinField title="Genarate Code" nopadding={false} >
+            <AllgemeinField title="Codegenerieren" nopadding={false} >
                 <div ref={ref}>
 
                     <Button style={{ margin: 5 }} variant="contained" onClick={() => this.click()}>

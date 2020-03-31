@@ -25,7 +25,7 @@ export default class AwesomeComponent extends React.Component {
     }
     render() {
         return (
-            <AllgemeinField title="Delete User" nopadding={false} >
+            <AllgemeinField title="Benutzer löschen" nopadding={false} >
                 <div ref={ref}>
                     <TextField
                         InputLabelProps={{

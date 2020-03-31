@@ -25,7 +25,7 @@ export default class AwesomeComponent extends React.Component {
     }
     render() {
         return (
-            <AllgemeinField title="Demote User" nopadding={false} >
+            <AllgemeinField title="Benutzer zurückstufen" nopadding={false} >
                 <div ref={ref}>
                     <TextField
                         InputLabelProps={{
