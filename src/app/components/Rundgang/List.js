@@ -23,10 +23,10 @@ export default class AwesomeComponent extends React.Component {
                         { title: 'Title', field: 'Title' },
                         { title: 'description', field: 'description' },
                         {
-                            title: 'Status', field: 'Status', lookup: { "featured": 'featured', "pending": 'pending', "private": 'private' },
-                            render: d => d.Status == "featured" ?
+                            title: 'status', field: 'status', lookup: { "featured": 'featured', "pending": 'pending', "private": 'private' },
+                            render: d => d.status == "featured" ?
                                 <CheckCircleIcon style={{ color: "green" }} /> :
-                                d.Status == "pending" ?
+                                d.status == "pending" ?
                                     <HourglassEmptyIcon style={{ color: "orange" }} /> :
                                     <ErrorIcon style={{ color: "red" }} />
 
@@ -36,7 +36,7 @@ export default class AwesomeComponent extends React.Component {
                     editable={{
                         onRowUpdate: (newData, oldData) => new Promise((resolve, reject) => {
                             console.log(newData, oldData)
-                            newData.Status != oldData.Status & newData.Status == 0 ?
+                            newData.status != oldData.status & newData.status == 0 ?
 
                                 request.axiosGraphQL.post('', { query: request.acceptReview(localStorage.getItem("atoken"), this.state.newData.ID) })
                                     .then(res => {
@@ -52,7 +52,7 @@ export default class AwesomeComponent extends React.Component {
                                         alert("Errot" + err)
                                         reject()
                                     }) :
-                                newData.Status != oldData.Status & newData.Status != "pending" && newData.Status != "featured" ?
+                                newData.status != oldData.status & newData.status != "pending" && newData.status != "featured" ?
 
                                     request.axiosGraphQL.post('', { query: request.denyReview(localStorage.getItem("atoken"), this.state.newData.ID) })
                                         .then(res => {
@@ -67,7 +67,7 @@ export default class AwesomeComponent extends React.Component {
                                             alert("Errot" + err)
                                             reject()
 
-                                        }) : null
+                                        }) : reject("")
 
                         })
                     }}
