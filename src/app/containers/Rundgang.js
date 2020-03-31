@@ -30,9 +30,13 @@ class Rundgang extends Component {
   render() {
     console.log(this.state.selected)
     return (
-      <div >
-        <ListOfRundgangs handelSelect={(x) => this.setState({ selected: x })} data={this.state.data} />
-        <ListEditor selected={this.state.selected} />
+      <div >{
+        this.props.data.length == 0 ? <div>Loading ....</div> :
+          <>
+            <ListOfRundgangs handelSelect={(x) => this.setState({ selected: x })} data={this.state.data} />
+            <ListEditor selected={this.state.selected} />
+          </>
+      }
       </div >
     )
 
