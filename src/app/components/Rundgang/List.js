@@ -18,7 +18,7 @@ export default class AwesomeComponent extends React.Component {
                 <MaterialTable
                     title="Liste von Rundgängen"
                     columns={[
-                        { title: 'ID', field: 'id' },
+                        { title: 'id', field: 'id' },
                         { title: 'name', field: 'name' },
                         { title: 'Title', field: 'Title' },
                         { title: 'description', field: 'description' },
@@ -38,7 +38,7 @@ export default class AwesomeComponent extends React.Component {
                             console.log(newData, oldData, newData.status != oldData.status, newData.status == "featured")
                             newData.status != oldData.status && newData.status == "featured" ?
 
-                                request.axiosGraphQL.post('', { query: request.acceptReview(localStorage.getItem("atoken"), this.state.newData.ID) })
+                                request.axiosGraphQL.post('', { query: request.acceptReview(localStorage.getItem("atoken"), this.state.newData.id) })
                                     .then(res => {
                                         alert("done")
                                         const data = this.state.data;
@@ -54,7 +54,7 @@ export default class AwesomeComponent extends React.Component {
                                     }) :
                                 newData.status != oldData.status && newData.status != "pending" && newData.status != "featured" ?
 
-                                    request.axiosGraphQL.post('', { query: request.denyReview(localStorage.getItem("atoken"), this.state.newData.ID) })
+                                    request.axiosGraphQL.post('', { query: request.denyReview(localStorage.getItem("atoken"), this.state.newData.id) })
                                         .then(res => {
                                             alert("done")
                                             const data = this.state.data;
@@ -75,7 +75,7 @@ export default class AwesomeComponent extends React.Component {
                         {
                             icon: 'cloud_download',
                             tooltip: 'Download',
-                            onClick: (event, rowData) => this.props.handelSelect(rowData.Id)
+                            onClick: (event, rowData) => this.props.handelSelect(rowData.id)
                         },
                     ]}
                     options={{
