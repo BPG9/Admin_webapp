@@ -21,14 +21,14 @@ class Rundgang extends Component {
   componentWillMount() {
     request.axiosGraphQL.post('', { query: request.pending(localStorage.getItem("atoken")) })
       .then(res => {
-        this.setState({ data: res.data.data.allTours })
+        this.setState({ data: res.data.data.allTours }, console.log("added"))
       })
       .catch(err => {
         alert("ERR" + err)
       })
   }
   render() {
-    console.log(this.state.selected)
+    console.log(this.state)
     return (
       <div >{
         this.props.data && this.props.data.length > 0 ?
