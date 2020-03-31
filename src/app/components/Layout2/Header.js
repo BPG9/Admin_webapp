@@ -19,7 +19,7 @@ import Brightness4Icon from '@material-ui/icons/Brightness4';
 import { useDispatch } from 'react-redux'
 import * as actions from "../../store/actions/UserActions";
 
-import LogoutItem from './Logout'
+
 
 const useStyles = makeStyles(theme => ({
     grow: {
