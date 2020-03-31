@@ -249,7 +249,7 @@ mutation {
 export const pending = (token) => {
     return `
     query{
- pending(token:"`+ token + `")
+        allTours(token:"`+ token + `")
        {
   id
   name

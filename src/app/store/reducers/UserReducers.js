@@ -14,7 +14,6 @@ const initialState = {
   loginError: null,
   name: null,
   vorname: null,
-  soll: null
 };
 
 const authStart = (state, action) => {
