@@ -11,6 +11,9 @@ export default class AwesomeComponent extends React.Component {
     state = {
         data: this.props.data
     }
+    componentDidUpdate() {
+        this.setState({ data: this.props.data })
+    }
     render() {
         return (
             <AllgemeinFieldForTable>
