@@ -204,7 +204,7 @@ export const updateMuseumObject = (
 
 
 
-export const acceptReview = (tour, token) => {
+export const acceptReview = (token, tour) => {
     return `
 mutation {
     acceptReview(token:"`+ token + `", tourId:"` + tour + `")
@@ -222,7 +222,7 @@ status
 }}}
 `
 }
-export const denyReview = (tour, token) => {
+export const denyReview = (token, tour) => {
     return J`
 mutation {
     denyReview(token:"`+ token + `", tourId:"` + tour + `")
