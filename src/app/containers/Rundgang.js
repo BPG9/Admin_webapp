@@ -28,7 +28,7 @@ class Rundgang extends Component {
       })
   }
   render() {
-    console.log(this.state, this.props.data.length)
+    console.log(this.state, this.props.data && this.props.data.length)
     return (
       <div >{
         this.props.data && this.props.data.length > 0 ?
