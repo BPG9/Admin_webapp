@@ -28,10 +28,10 @@ class Rundgang extends Component {
       })
   }
   render() {
-    console.log(this.state, this.props.data && this.props.data.length)
+    console.log(this.state, this.state.data && this.state.data.length)
     return (
       <div >{
-        this.props.data && this.props.data.length > 0 ?
+        this.state.data && this.state.data.length > 0 ?
           <>
             {console.log("a")}
             <ListOfRundgangs handelSelect={(x) => this.setState({ selected: x })} data={this.state.data} />
