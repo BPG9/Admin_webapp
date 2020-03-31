@@ -24,9 +24,9 @@ export default class AwesomeComponent extends React.Component {
                         { title: 'description', field: 'description' },
                         {
                             title: 'Status', field: 'Status', lookup: { "featured": 'featured', "pending": 'pending', "private": 'private' },
-                            render: d => d.Status == 0 ?
+                            render: d => d.Status == "featured" ?
                                 <CheckCircleIcon style={{ color: "green" }} /> :
-                                d.Status == 1 ?
+                                d.Status == "pending" ?
                                     <HourglassEmptyIcon style={{ color: "orange" }} /> :
                                     <ErrorIcon style={{ color: "red" }} />
 
@@ -52,7 +52,7 @@ export default class AwesomeComponent extends React.Component {
                                         alert("Errot" + err)
                                         reject()
                                     }) :
-                                newData.Status != oldData.Status & newData.Status != 1 && newData.Status != 0 ?
+                                newData.Status != oldData.Status & newData.Status != "pending" && newData.Status != "featured" ?
 
                                     request.axiosGraphQL.post('', { query: request.denyReview(localStorage.getItem("atoken"), this.state.newData.ID) })
                                         .then(res => {
