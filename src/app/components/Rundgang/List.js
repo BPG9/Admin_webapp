@@ -35,7 +35,7 @@ export default class AwesomeComponent extends React.Component {
                     data={this.state.data}
                     editable={{
                         onRowUpdate: (newData, oldData) => new Promise((resolve, reject) => {
-                            console.log(newData, oldData, newData.status != oldData.status && newData.status == "featured")
+                            console.log(newData, oldData, newData.status != oldData.status, newData.status == "featured")
                             newData.status != oldData.status && newData.status == "featured" ?
 
                                 request.axiosGraphQL.post('', { query: request.acceptReview(localStorage.getItem("atoken"), this.state.newData.ID) })
