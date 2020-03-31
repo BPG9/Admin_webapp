@@ -36,7 +36,7 @@ export default class AwesomeComponent extends React.Component {
                     editable={{
                         onRowUpdate: (newData, oldData) => new Promise((resolve, reject) => {
                             console.log(newData, oldData)
-                            newData.status != oldData.status & newData.status == "featured" ?
+                            newData.status != oldData.status && newData.status == "featured" ?
 
                                 request.axiosGraphQL.post('', { query: request.acceptReview(localStorage.getItem("atoken"), this.state.newData.ID) })
                                     .then(res => {
@@ -52,7 +52,7 @@ export default class AwesomeComponent extends React.Component {
                                         alert("Errot" + err)
                                         reject()
                                     }) :
-                                newData.status != oldData.status & newData.status != "pending" && newData.status != "featured" ?
+                                newData.status != oldData.status && newData.status != "pending" && newData.status != "featured" ?
 
                                     request.axiosGraphQL.post('', { query: request.denyReview(localStorage.getItem("atoken"), this.state.newData.ID) })
                                         .then(res => {
