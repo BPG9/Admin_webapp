@@ -1,4 +1,71 @@
-Museum Admin Webappp
+### Museum Admin Webappp
+
+ ## Wegen CORS müss Frontend mir dem selben Domain mit Backend sein. in diesem Fall 47-244.gugw.tu-darmstadt.de
+
+
+# Installation
+
+auf Windows: 
+
+nodejs und npm sollen heruntergeladen werden und installiert werden. 
+Link für Nodejs https://nodejs.org
+
+> How To Install And Setup A React App On Windows 10 (NUR Schritt 1)
+https://www.techomoro.com/how-to-install-and-setup-a-react-app-on-windows-10/
+
+> für installation aud Ubuntu/Debian 
+
+Node :  
+```
+sudo apt install nodejs   
+```
+
+
+
+NPM:    
+```
+sudo apt install npm
+```
+
+
+PM2:   
+```
+npm install pm2 -g
+```
+
+
+requiremnet für React: 
+```
+ npm install
+```
+
+
+> Start
+für start Development: 
+```
+npm start
+```
+für Build Production:
+```
+npm run build   
+```
+
+
+> nginx configuration
+ react funktioniert bei Development auf Port 8081 deshalb muss nginx Konfiguration reverce Proxy auf 8081 gemacht werden. ein Beispel dafür: 
+
+server {
+    server_name 47-244.gugw.tu-darmstadt.de;
+    listen 80;
+
+location / {
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-Server $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        proxy_pass http://localhost:8081;
+        client_max_body_size 10M;
+    }
+}
 
 # Admin page ENG:
 
