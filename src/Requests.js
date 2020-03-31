@@ -205,8 +205,7 @@ export const updateMuseumObject = (
 
 
 export const acceptReview = (tour, token) => {
-    return JSON.stringify({
-        "query": `
+    return `
 mutation {
     acceptReview(token:"`+ token + `", tourId:"` + tour + `")
  {
@@ -222,11 +221,9 @@ id
 status
 }}}
 `
-    })
 }
 export const denyReview = (tour, token) => {
-    return JSON.stringify({
-        "query": `
+    return J`
 mutation {
     denyReview(token:"`+ token + `", tourId:"` + tour + `")
     {
@@ -242,7 +239,6 @@ mutation {
  status
  }}}
 `
-    })
 }
 
 
