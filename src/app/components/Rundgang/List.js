@@ -23,7 +23,7 @@ export default class AwesomeComponent extends React.Component {
                         { title: 'Title', field: 'Title' },
                         { title: 'description', field: 'description' },
                         {
-                            title: 'Status', field: 'Status', lookup: { 0: 'Akkzeptieren', 1: 'kein Antwort', 2: 'Ablehenen' },
+                            title: 'Status', field: 'Status', lookup: { "featured": 'featured', "pending": 'pending', "private": 'private' },
                             render: d => d.Status == 0 ?
                                 <CheckCircleIcon style={{ color: "green" }} /> :
                                 d.Status == 1 ?
@@ -38,7 +38,7 @@ export default class AwesomeComponent extends React.Component {
                             console.log(newData, oldData)
                             newData.Status != oldData.Status & newData.Status == 0 ?
 
-                                request.axiosGraphQL.post('', { query: request.acceptReview(localStorage.getItem("token"), this.state.newData.ID) })
+                                request.axiosGraphQL.post('', { query: request.acceptReview(localStorage.getItem("atoken"), this.state.newData.ID) })
                                     .then(res => {
                                         alert("done")
                                         const data = this.state.data;
@@ -54,7 +54,7 @@ export default class AwesomeComponent extends React.Component {
                                     }) :
                                 newData.Status != oldData.Status & newData.Status != 1 && newData.Status != 0 ?
 
-                                    request.axiosGraphQL.post('', { query: request.denyReview(localStorage.getItem("token"), this.state.newData.ID) })
+                                    request.axiosGraphQL.post('', { query: request.denyReview(localStorage.getItem("atoken"), this.state.newData.ID) })
                                         .then(res => {
                                             alert("done")
                                             const data = this.state.data;
