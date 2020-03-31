@@ -90,9 +90,15 @@ export const AuthLogin = (id, pass) => {
 
         axios.post("http://247-244.gugw.tu-darmstadt.de/web", request.login(id, pass), config)
             .then(x => {
-                localStorage.setItem("rtoken", x.data.data.auth.refreshToken)
-                localStorage.setItem("atoken", x.data.data.auth.accessToken)
-                dispatch(AuthSuccess(x.data.data.auth.accessToken, x.data.data.auth.refreshToken));
+                if (x.data.data.auth.refreshToken || x.data.data.auth.accessToken) {
+                    alert("Error gibt es keine benutzer oder Pass ist falsch")
+                }
+                else {
+
+                    localStorage.setItem("rtoken", x.data.data.auth.refreshToken)
+                    localStorage.setItem("atoken", x.data.data.auth.accessToken)
+                    dispatch(AuthSuccess(x.data.data.auth.accessToken, x.data.data.auth.refreshToken));
+                }
             })
             .catch(x => console.log("eerror", x))
     }

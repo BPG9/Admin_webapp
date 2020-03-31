@@ -1,6 +1,6 @@
 ### Museum Admin Webappp
 
- ## Wegen CORS müss Frontend mir dem selben Domain mit Backend sein. in diesem Fall 47-244.gugw.tu-darmstadt.de
+ ## Wegen CORS muss Frontend mit dem selben Domain wie Backend sein. in diesem Fall 47-244.gugw.tu-darmstadt.de
 
 
 # Installation
@@ -65,6 +65,18 @@ location / {
         proxy_pass http://localhost:8081;
         client_max_body_size 10M;
     }
+}
+
+
+Beispiel für Production: 
+server {
+    server_name 47-244.gugw.tu-darmstadt.de;
+    root /Path/to/Build/files;
+    index index.html;
+
+location / {
+  try_files $uri /index.html;
+}
 }
 
 # Admin page ENG:
