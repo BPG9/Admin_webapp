@@ -55,7 +55,14 @@ export const AuthCheck = () => {
         dispatch(AuthStart());
         // axios.defaults.withCredentials = true;
         var refreshToken = localStorage.getItem("rtoken")
-        if (!refreshToken.startsWith("ey")) dispatch(AuthError("err"))
+        var ahToken = localStorage.getItem("atoken")
+
+
+        if (!refreshToken.startsWith("ey")) {
+            dispatch(AuthError("err"))
+            return
+        }
+
         console.log("refreshToken is ", refreshToken)
         request.axiosGraphQL.post('', request.refresh(refreshToken))
             .then(res => {
