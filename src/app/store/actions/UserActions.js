@@ -107,7 +107,8 @@ export const AuthLogin = (id, pass) => {
                     dispatch(AuthSuccess(x.data.data.auth.accessToken, x.data.data.auth.refreshToken));
                 }
             })
-            .catch(x => console.log("eerror", x))
+            .catch(x => dispatch(AuthError("err" + x))
+            )
     }
 }
 
@@ -115,5 +116,6 @@ export const AuthLogout = (id, pass) => {
     return dispatch => {
         localStorage.clear()
         dispatch(Logout())
+
     }
 }
