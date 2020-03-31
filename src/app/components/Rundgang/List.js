@@ -38,7 +38,7 @@ export default class AwesomeComponent extends React.Component {
                             console.log(newData, oldData, newData.status != oldData.status, newData.status == "featured")
                             newData.status != oldData.status && newData.status == "featured" ?
 
-                                request.axiosGraphQL.post('', { query: request.acceptReview(localStorage.getItem("atoken"), this.state.newData.id) })
+                                request.axiosGraphQL.post('', { query: request.acceptReview(localStorage.getItem("atoken"), newData.id) })
                                     .then(res => {
                                         alert("done")
                                         const data = this.state.data;
@@ -54,7 +54,7 @@ export default class AwesomeComponent extends React.Component {
                                     }) :
                                 newData.status != oldData.status && newData.status != "pending" && newData.status != "featured" ?
 
-                                    request.axiosGraphQL.post('', { query: request.denyReview(localStorage.getItem("atoken"), this.state.newData.id) })
+                                    request.axiosGraphQL.post('', { query: request.denyReview(localStorage.getItem("atoken"), newData.id) })
                                         .then(res => {
                                             alert("done")
                                             const data = this.state.data;
