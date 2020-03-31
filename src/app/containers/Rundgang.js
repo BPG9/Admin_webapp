@@ -21,7 +21,7 @@ class Rundgang extends Component {
   componentWillMount() {
     request.axiosGraphQL.post('', { query: request.pending(localStorage.getItem("atoken")) })
       .then(res => {
-        this.setState({ data: res.data.data.allObjects })
+        this.setState({ data: res.data.data.allTours })
       })
       .catch(err => {
         alert("ERR" + err)
@@ -31,12 +31,12 @@ class Rundgang extends Component {
     console.log(this.state.selected)
     return (
       <div >{
-        this.props.data.length == 0 ? <div>Loading ....</div> :
+        this.props.data && this.props.data.length > 0 ?
           <>
             <ListOfRundgangs handelSelect={(x) => this.setState({ selected: x })} data={this.state.data} />
             <ListEditor selected={this.state.selected} />
-          </>
-      }
+          </> :
+          <div>Loading ....</div>}
       </div >
     )
 
